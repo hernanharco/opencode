@@ -1,31 +1,30 @@
-# opencode
-
-/init
-
+# con agentes
 ____
 
-"Quiero migrar esta landing page a Astro usando Svelte. Crea la estructura de carpetas necesaria y convierte el contenido principal en un componente Svelte reutilizable, siguiendo el principio de Responsabilidad Única (SRP)."
+1. En Windsurf (Ahorra tokens de Antigravity):
+Abre la carpeta en Windsurf y pídele que prepare el terreno. Como ya tienes la carpeta frontend/, dile a Cascade:
 
-Gestor de paquetes: pnpm
+🛠️ Prompt Maestro de Inicialización (Linux + Astro + Tailwind + Svelte)
+"Inicializa un nuevo proyecto de Astro en la carpeta frontend/ usando pnpm.
 
-para el backend
-Tengo un frontend existente y necesito crear un backend con FastApi conectado a PostgreSQL (NEON)
+1. Gestión de Permisos (Linux):
+Ejecuta todos los comandos asegurándote de que los permisos de las carpetas y archivos creados sean los correctos para mi usuario local (chown si es necesario), evitando bloqueos de permisos al instalar dependencias.
 
-## Stack del Proyecto
-- Frontend: [Astro + Svelt 5 + Tailwind CSS v4]
-- Backend a crear: FastAPI + SQLAlchemy + PostgreSQL (NEON)
-- Gestor de paquetes: Poetry
+2. Stack Técnico y Estabilidad:
 
-### Secciones del frontend.
-Debes analizar todo lo que se encuentra en components para crear las secciones
+  - Instala Tailwind CSS v3 (específicamente la versión estable 3.4.x, evita la v4) para garantizar compatibilidad con la integración oficial de Astro.
 
-Requisitos
-COnectas a NEON Y pasar los parametros del .env
-2. Estructura SRP
-3. Crud Completos 
-4. Endpoint que devuelva a todos los datos
-5. **Integracion con el frontend**
-- El frontend usa 'fetch para cargar datos'
-- Los compoenentes consumen datos de la API y muestran iconos dinamicamente
+  - Crea un archivo postcss.config.cjs que incluya tailwindcss y autoprefixer.
 
-6. 
+  - Configura la integración de Svelte en astro.config.mjs.
+
+3. Acciones de Ejecución:
+
+  - Usa pnpm create astro@latest ./frontend --template minimal --install --yes.
+
+  - Añade las integraciones con pnpm astro add tailwind svelte --yes.
+
+  - Validación Final: Ejecuta pnpm dev y verifica que el servidor arranque sin errores de PostCSS o Svelte. Si hay errores de versiones de Svelte (v4 vs v5), ajusta los overrides en el package.json para mantener la estabilidad.
+
+*Regla de Oro:* No des por terminada la tarea hasta que confirmes que el 'Hola Mundo' en index.astro es visible en el navegador."
+_____

@@ -30,6 +30,43 @@ Ejecuta todos los comandos asegurándote de que los permisos de las carpetas y a
 _____
 
 ## 2. Pedir que diseñe un archivo md de inicio para que pueda trabajar la LLM ejemplo puede ser claude.md / .windsurfrules / .cursorrules
+
+# Reglas para este proyecto - Landing Dra. Andrea
+
+## General
+- Este es un proyecto Astro + Svelte 5 + Tailwind CSS.
+- Siempre convierte componentes React/TSX a Svelte 5 usando runes ($state, $derived, $effect).
+- Mantén EXACTAMENTE las mismas clases Tailwind, estructura HTML, nombres de variables/props, ids y data attributes.
+- No agregues imports innecesarios, no cambies funcionalidad, no agregues lógica nueva ni optimizaciones sin pedir permiso.
+- Usa <script lang="ts"> para TypeScript.
+- Para componentes en páginas Astro: usa client:load para Navbar y Hero (si tienen interactividad como menú mobile o animaciones), y client:visible para About, Services, Booking y Footer (lazy loading).
+- Convierte eventos React (onClick → on:click, onChange → on:change, etc.).
+- Usa $state para variables reactivas, $derived para computados, $effect para side-effects.
+
+## Estilos y Tailwind
+- Nunca elimines ni modifiques clases Tailwind existentes (ej: bg-stone-50, text-primary-600, hover:scale-105, etc.).
+- Si el componente original usa clases custom (no-Tailwind) de archivos en /src/styles/ o globales, mantenlas y copia los imports correspondientes (ej: import '../styles/hero.css';).
+- Preserva todos los inline styles si los hay (style="...").
+- Si hay referencias a variables CSS custom (--primary, --accent, etc.), mantenlas intactas.
+
+## Imágenes y Assets
+- Mantén exactamente las mismas rutas de imágenes que en el componente original (ej: src="/assets/hero-bg.jpg", src={import.meta.env.BASE_URL + '/images/logo.png'}, etc.).
+- Si el componente original usa imports de imágenes (import heroImg from '../assets/hero.png';), conviértelo a la sintaxis equivalente en Svelte/Astro: let heroImg = '/assets/hero.png'; o usa import si es necesario.
+- No cambies ni optimices paths de assets; asume que la estructura de carpetas /public o /src/assets se mantiene idéntica.
+- Si ves placeholders o URLs externas de Figma, mantenlas tal cual (incluso si son temporales).
+- Copia cualquier <img> con alt, loading="lazy", decoding="async", etc., exactamente igual.
+
+## Estructura de archivos
+- Genera el componente como Nombre.svelte en la misma carpeta relativa (ej: si era components/Navbar.tsx → components/Navbar.svelte).
+- Si el componente tiene <style> scoped en React (styled-jsx o CSS-in-JS), conviértelo a <style> normal en Svelte (scoped por default).
+- No uses CSS modules a menos que ya existan; prioriza Tailwind + global styles.
+
+## Extras
+- Si detectas animaciones (framer-motion, etc.), conviértelas a Svelte transitions/animations o mantenlas con CSS si son simples.
+- Para el ChatWidget: preserva cualquier estado de abierto/cerrado, animaciones de entrada/salida y enlaces a WhatsApp/teléfono.
+- Siempre valida que el componente renderice visualmente idéntico al original (mismo spacing, colors, responsive breakpoints).
+
+  
 _______
 ## 3. "@.cursorrules Migra el componente Navbar.tsx a Svelte. Asegúrate de que los enlaces funcionen como anclas en la misma página de Astro."
 ______

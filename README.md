@@ -68,7 +68,10 @@ _____
 
   
 _______
-## 3. "@.cursorrules Migra el componente Navbar.tsx a Svelte. Asegúrate de que los enlaces funcionen como anclas en la misma página de Astro."
+## 3. "@.windsurf Migra el componente Navbar.tsx a Svelte. Asegúrate de que los enlaces funcionen como anclas en la misma página de Astro."
+
+Convierte este componente React/TSX a Svelte 5 siguiendo estrictamente todas las reglas del proyecto en rules.md.
+Genera Hero.svelte completo, preservando imágenes, rutas de assets y todos los estilos Tailwind/custom.
 ______
 ## 4. 🛠️ Plan de Rescate Visual (Sin gastar tokens extra)
 Vamos a usar a Windsurf para este ajuste, ya que es mejor comparando archivos de configuración.

@@ -29,7 +29,7 @@ Ejecuta todos los comandos asegurándote de que los permisos de las carpetas y a
 *Regla de Oro:* No des por terminada la tarea hasta que confirmes que el 'Hola Mundo' en index.astro es visible en el navegador."
 _____
 
-## 2. Pedir que diseñe un archivo md de inicio para que pueda trabajar la LLM ejemplo puede ser claude.md / .windsurfrules / .cursorrules
+## 2. Pedir que diseñe un archivo md de inicio para que pueda trabajar la LLM ejemplo puede ser claude.md / .windsurf / .cursorrules raiz
 
 # Reglas para este proyecto - Landing Dra. Andrea
 

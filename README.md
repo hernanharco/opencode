@@ -30,8 +30,8 @@ Ejecuta todos los comandos asegurándote de que los permisos de las carpetas y a
 _____
 
 ## 2. Pedir que diseñe un archivo md de inicio para que pueda trabajar la LLM ejemplo puede ser claude.md / .windsurf / .cursorrules raiz
-
-# Reglas para este proyecto - Landing Dra. Andrea
+```text
+# Reglas para este proyecto
 
 ## General
 - Este es un proyecto Astro + Svelte 5 + Tailwind CSS.
@@ -65,7 +65,7 @@ _____
 - Si detectas animaciones (framer-motion, etc.), conviértelas a Svelte transitions/animations o mantenlas con CSS si son simples.
 - Para el ChatWidget: preserva cualquier estado de abierto/cerrado, animaciones de entrada/salida y enlaces a WhatsApp/teléfono.
 - Siempre valida que el componente renderice visualmente idéntico al original (mismo spacing, colors, responsive breakpoints).
-
+```
   
 _______
 ## 3. "@.windsurf Migra el componente Navbar.tsx a Svelte. Asegúrate de que los enlaces funcionen como anclas en la misma página de Astro."

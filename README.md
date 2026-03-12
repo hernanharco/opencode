@@ -53,7 +53,25 @@ Archivos a convertir:
 @Services.tsx
 @Testimonials.tsx
 ```
-  
+Implement the Svelte conversions immediately. Create the files and apply the diffs without asking again.
+
+```
+Ahora que los componentes Svelte están creados en src/app/components/ (Header.svelte, Contact.svelte, Footer.svelte, Gallery.svelte, Hero.svelte, Services.svelte, Testimonials.svelte),
+
+Actualiza el archivo src/pages/index.astro (o la página principal donde se usan estos componentes) para:
+
+- Eliminar imports de los viejos .tsx (Header.tsx, Hero.tsx, etc.)
+- Agregar imports correctos de los nuevos .svelte
+- Reemplazar cada uso de <Header /> por <Header client:load /> (o client:visible si es menos interactivo)
+- Hacer lo mismo para los demás: Hero, Services, Gallery, Testimonials, Contact, Footer
+  - Usa client:load para Header (menú móvil), Contact (formulario), Gallery (modal interactivo)
+  - Usa client:visible o client:idle para Hero, Services, Testimonials, Footer (menos urgentes)
+- Mantén toda la estructura HTML, clases Tailwind y layout existente exactamente igual
+- Si hay un Layout.astro o wrapper, respétalo
+- Devuelve el diff o aplica los cambios directamente en index.astro
+
+No crees nuevos archivos, solo edita index.astro. Implementa los cambios ahora sin esperar aprobación adicional si es posible.
+```   
 _______
 ## 3. "@.windsurf Migra el componente Navbar.tsx a Svelte. Asegúrate de que los enlaces funcionen como anclas en la misma página de Astro."
 

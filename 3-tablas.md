@@ -48,13 +48,12 @@ UX: Implementa previsualización de imagen (Preview) antes de subir y un estado 
 Credenciales .env:
 
 Fragmento de código
-´´´
+```
 CLOUDINARY_CLOUD_NAME=dxyk76jhu
-
 CLOUDINARY_API_KEY=185721842557166
-
 CLOUDINARY_API_SECRET=TU_API_SECRET_COMPLETO
-´´´
+```
+
 Objetivo: El sistema debe permitirme actualizar el Hero o un Proyecto desde el panel /admin, subiendo la imagen a Cloudinary y guardando el link en Neon, sin errores de CORS.
 
 Respuesta esperada: "CMS con soporte para Cloudinary configurado – Las imágenes ahora se gestionan en la nube."

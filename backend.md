@@ -81,7 +81,7 @@ text### Después de que Windsurf termine el Prompt 1 y diga el mensaje de confir
 PGHOST=ep-autumn-forest-al0yrhj9-pooler.c-3.eu-central-1.aws.neon.tech
 PGDATABASE=neondb
 PGUSER=neondb_owner
-PGPASSWORD=npg_DRAFwbvEm59W
+PGPASSWORD=npg_DR
 PGSSLMODE=require
 PGCHANNELBINDING=require
 

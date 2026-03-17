@@ -107,11 +107,11 @@ Asegúrate de que:
 - No haya errores de connect_args inesperados
 - La conexión use channel_binding para máxima protección MITM
 
-Objetivo final: pnpm dev muestra todos los logs con ✅ "Conexión exitosa: Tablas verificadas/creadas en NEON." y crea la tabla users automáticamente en Neon con la configuración segura.
+Objetivo final: pnpm dev muestra todos los logs con ✅ "Conexión exitosa: Tablas verificadas/creadas en NEON." y crea la tabla example automáticamente en Neon con la configuración segura.
 
 Cuando termines, responde exactamente:
 
-**"Proyecto completo con máxima seguridad – psycopg + channel_binding activo – pnpm dev debería conectar y crear tabla users"**
+**"Proyecto completo con máxima seguridad – psycopg + channel_binding activo – pnpm dev debería conectar y crear tabla example"**
 Una vez que Windsurf termine este Prompt 3 y confirme, ejecuta:
 
 _____

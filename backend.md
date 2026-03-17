@@ -219,7 +219,7 @@ app.include_router(api_router, prefix="/api/v1")
 
 @app.get("/")
 async def root():
-    return {"message": "✅ Auth Core Backend está corriendo correctamente"}
+    return {"message": "✅ Backend está corriendo correctamente"}
 
 
 @app.get("/health")

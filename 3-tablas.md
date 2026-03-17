@@ -1,14 +1,24 @@
-genial quedo perfecto ahora. en la carpeta de frontend/src/components revisa cada una de la clases
-@About.svelte 
-@Footer.svelte 
-@Hero.svelte 
-@Navbar.svelte 
-@Passions.svelte 
-@Projects.svelte 
-@Stack.svelte 
+"Ahora que tenemos la base limpia, vamos a implementar la persistencia de datos. Para respetar estrictamente el Principio de Responsabilidad Única (SRP) y nuestra arquitectura de agentes modulares, no crearemos un archivo único.
 
-revisa cada una y crea las tablas, los campos y los endpoints necesarios para modificar la informacion tener encuenta las url en donde haya imagenes, iconos y colores 
+Necesito que analices los componentes en frontend/src/components (Hero, About, Stack, Projects, etc.) y por cada uno de ellos crees una estructura independiente:
 
+Modelos: Un archivo por dominio en backend/app/models/ (ej: hero.py, projects.py). Usa PostgreSQL con Neon y tipos JSONB donde sea necesario (para listas de iconos o tags).
+
+Schemas: Un archivo por dominio en backend/app/schemas/ (ej: hero.py, projects.py).
+
+Endpoints: Un archivo por dominio en backend/app/api/v1/endpoints/ (ej: hero_router.py, projects_router.py).
+
+Restricciones técnicas:
+
+Las imágenes deben guardarse como campos de URL (string).
+
+Los iconos de Lucide deben guardarse como strings con el nombre del icono.
+
+Los colores deben guardarse como strings (hexadecimal).
+
+Prohibido: No mezcles la lógica de Hero con la de Projects en el mismo archivo. Cada dominio debe ser un 'nodo' independiente que luego conectaremos en el grafo principal.
+
+Por favor, empieza mostrándome la estructura de archivos que vas a crear antes de generar el código de cada uno."
 ____
 
 Prompt para Windsurf: CMS, Cloudinary y Seguridad de Dominio

@@ -78,7 +78,7 @@ text### Después de que Windsurf termine el Prompt 1 y diga el mensaje de confir
 2. Crea el archivo `.env` manualmente con este contenido (máxima seguridad):
 
 ```env
-PGHOST=ep-autumn-forest-al0yrhj9-pooler.c-3.eu-central-1.aws.neon.tech
+PGHOST=ep-autumn-forest-
 PGDATABASE=neondb
 PGUSER=neondb_owner
 PGPASSWORD=npg_DR

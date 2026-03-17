@@ -32,8 +32,7 @@ backend/
 │       ├── init.py
 │       └── endpoints/
 │           ├── init.py
-│           ├── auth.py
-│           └── users.py
+│           ├── example.py
 └── tests/
 └── init.py
 text**package.json EXACTO (cópialo tal cual):**

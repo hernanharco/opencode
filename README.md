@@ -2,6 +2,7 @@
 - git clean -n -> esto dira que archivos se borrarian sin borrarlos todavia
 - git clean -f -> borrado forzado de archivo
 - git clean -fd -> el parametro -d incluye los directorios (carpetas) que se crearon con esas clases
+- grep -r "8002" src/
 
 # con agentes
 ____

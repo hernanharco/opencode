@@ -1,3 +1,4 @@
+# Organizamos las carpetas de api para que tenga SRP y se crea services
 🚀 Prompt Definitivo: Arquitectura de Servicios Modulares (SRP)
 Contexto:
 Necesito refactorizar la comunicación con la API para eliminar URLs hardcodeadas y el uso de objetos "Dios". El objetivo es centralizar la configuración y modularizar los servicios por dominio (Hero, Projects, etc.) siguiendo estrictamente el Principio de Responsabilidad Única.
@@ -42,3 +43,55 @@ Elimina cualquier archivo de API antiguo que ya no se utilice.
 Nota: Yo me encargaré de actualizar manualmente el archivo .env con la variable PUBLIC_API_URL. Asume que esta variable existe.
 
 Objetivo Final: Lograr un sistema donde cada componente solo sepa qué datos mostrar, y cada servicio solo sepa cómo hablar con su endpoint específico, centralizando la infraestructura en un solo lugar.
+
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "$lib/*": ["src/lib/*"],
+      "@components/*": ["src/components/*"]
+    }
+  },
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}
+
+____
+# Con este prompt logramos que guarde la informacion en la base de datos NEON desde el /admin
+
+📝 Prompt Maestro "Pro" (Versión 3.0 - Con Observabilidad)
+Este prompt unifica todo lo anterior y añade la capa de mensajes de error descriptivos para que sepas exactamente qué falló (si fue el código, la base de datos o Cloudinary).
+
+Tarea: Refactorización Modular de Servicios con Validación de Infraestructura
+
+1. Infraestructura de Configuración (src/lib/config.ts):
+
+Mantener fetchApi como punto único.
+
+Multipart Logic: Si body es FormData, eliminar Content-Type.
+
+Error Handling: Si !response.ok, intentar extraer response.json().detail para lanzar un error con el mensaje específico del backend.
+
+2. Capa de Servicios (src/lib/services/):
+
+Modularizar por dominio (Hero, Projects, etc.).
+
+Pasar FormData directamente para métodos con imágenes.
+
+3. Backend Routers (FastAPI):
+
+Usar Depends(form_helper) para mapear Form(...) a Schemas de Pydantic.
+
+4. Cloudinary Service (app/core/cloudinary.py):
+
+Validación de Credenciales: Implementar captura de cloudinary.exceptions.AuthorizationRequired.
+
+Mensajes Claros: Si falla la firma o autenticación, lanzar una HTTPException con un detail explícito: "Error de conexión con Cloudinary: Revise las API Keys".
+
+5. Frontend UI (HeroEditor.svelte, etc.):
+
+En el catch del handleSubmit, mostrar el mensaje de error que viene del backend en un alert() o un estado de error en pantalla para informar al usuario.
+
+Objetivo: Si las credenciales del .env están mal, el sistema debe avisar específicamente "Error de Cloudinary" en lugar de un genérico "Failed to fetch".
+

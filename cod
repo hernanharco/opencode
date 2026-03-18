@@ -1,2 +1,5 @@
-vamos a convertir este archivo a astro + svelte quiero mantener el diseño completamente igual y para llevar acabo puedes guiarte con el archivo 
-guidelines/Guidelines.md utilizar comando pnpm y crear una carpeta frontend para colocar todo el proyecto nuevo
+- git reset --hard xxx
+- git clean -n -> esto dira que archivos se borrarian sin borrarlos todavia
+- git clean -f -> borrado forzado de archivo
+- git clean -fd -> el parametro -d incluye los directorios (carpetas) que se crearon con esas clases
+- grep -r "8002" src/

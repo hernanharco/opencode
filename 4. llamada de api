@@ -1,0 +1,44 @@
+🚀 Prompt Definitivo: Arquitectura de Servicios Modulares (SRP)
+Contexto:
+Necesito refactorizar la comunicación con la API para eliminar URLs hardcodeadas y el uso de objetos "Dios". El objetivo es centralizar la configuración y modularizar los servicios por dominio (Hero, Projects, etc.) siguiendo estrictamente el Principio de Responsabilidad Única.
+
+1. Infraestructura de Configuración (src/lib/config.ts):
+
+Crea src/lib/config.ts.
+
+Define API_BASE_URL usando import.meta.env.PUBLIC_API_URL.
+
+Crea una función helper fetchApi(endpoint, options) que:
+
+Use la API_BASE_URL.
+
+Maneje los encabezados Content-Type: application/json por defecto.
+
+Realice el parseo de .json() y maneje errores básicos de red.
+
+2. Capa de Servicios Modulares (src/lib/services/):
+Crea la carpeta src/lib/services/ y genera un archivo independiente por cada dominio de negocio. Cada archivo debe importar fetchApi de la configuración y exponer un objeto con sus métodos específicos:
+
+hero.service.ts: Métodos get y update.
+
+projects.service.ts: Métodos getAll, create, update(id), delete(id).
+
+about.service.ts, technologies.service.ts, passions.service.ts, footer.service.ts: Siguiendo la misma lógica CRUD.
+
+3. Refactorización de Componentes (src/components/admin/):
+
+Analiza todos los editores (ej: HeroEditor.svelte, ProjectEditor.svelte).
+
+Elimina: Cualquier declaración local de API_URL o el import de un objeto api global antiguo.
+
+Importa: Únicamente el servicio específico que necesita el componente (ej: import { projectService } from '$lib/services/projects.service').
+
+Actualiza: Sustituye todas las llamadas fetch manuales o del objeto antiguo por los métodos del nuevo servicio modular.
+
+4. Limpieza y Consistencia:
+
+Elimina cualquier archivo de API antiguo que ya no se utilice.
+
+Nota: Yo me encargaré de actualizar manualmente el archivo .env con la variable PUBLIC_API_URL. Asume que esta variable existe.
+
+Objetivo Final: Lograr un sistema donde cada componente solo sepa qué datos mostrar, y cada servicio solo sepa cómo hablar con su endpoint específico, centralizando la infraestructura en un solo lugar.

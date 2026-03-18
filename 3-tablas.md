@@ -21,41 +21,47 @@ Prohibido: No mezcles la lógica de Hero con la de Projects en el mismo archivo.
 Por favor, empieza mostrándome la estructura de archivos que vas a crear antes de generar el código de cada uno."
 ____
 
-Prompt para Windsurf: CMS, Cloudinary y Seguridad de Dominio
+🚀 Prompt de Arquitectura Modular para Windsurf (Full SRP & Cloudinary)
 Contexto:
-Ya tenemos el backend FastAPI y el frontend Astro/Svelte. Necesito implementar la gestión de imágenes con Cloudinary y la interfaz /admin, pero respetando estrictamente el Principio de Responsabilidad Única (SRP). No quiero un archivo admin.py que gestione todo; cada dominio debe gestionarse a sí mismo.
+Ya tengo un backend FastAPI y un frontend Astro/Svelte. Necesito implementar la gestión de imágenes con Cloudinary y una interfaz /admin profesional. Es obligatorio seguir el Principio de Responsabilidad Única (SRP) para evitar archivos "monstruo".
 
-1. Configuración del Núcleo (Main & Security):
+1. Backend: Desacoplamiento de Servicios (SRP)
 
-Seguridad CORS: En app/main.py, configura el CORSMiddleware para permitir http://localhost:4321 con allow_credentials=True, allow_methods=["*"] y allow_headers=["*"].
+Servicio Cloudinary: Crea app/core/cloudinary.py. Responsabilidad única: conectar con la API (usando .env) y proveer la función upload_image(file: UploadFile).
 
-Registro de Modelos: Asegúrate de que app/main.py importe app.models para que Base.metadata reconozca todas las tablas en el lifespan.
+Refactorización de Endpoints: Analiza todos los archivos en app/api/v1/endpoints/.
 
-2. Integración de Cloudinary (Backend):
+Para cada dominio (Hero, Project, etc.), actualiza los métodos POST/PUT para aceptar UploadFile.
 
-Servicio: Crea app/core/cloudinary.py. Usa la librería cloudinary y configura las credenciales desde el .env (CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET).
+Usa el servicio de Cloudinary para obtener la URL y guardarla en Neon.
 
-Función de utilidad: Crea una función asíncrona upload_image(file: UploadFile) que devuelva únicamente la URL segura de Cloudinary.
+Configuración: Asegura que app/core/config.py valide las variables de Cloudinary y que app/main.py tenga el middleware de CORS para http://localhost:4321.
 
-3. Refactorización de Endpoints (SRP):
+2. Frontend: Estructura de Componentes Atómicos
+Divide la interfaz en archivos independientes para que cada uno gestione su propio dominio:
 
-Eliminar Duplicados: Si existe un archivo api/v1/endpoints/admin.py con lógica de Hero, Projects, etc., elimina esa lógica.
+Nueva Carpeta de Layout: Crea src/layouts/AdminPanel.svelte. Este será el Orquestador. Debe gestionar el estado de la pestaña activa (activeTab) y renderizar dinámicamente el editor correspondiente.
 
-Endpoints de Dominio: Modifica los archivos hero.py, projects.py y otros que requieran imágenes:
+Componentes de Dominio (src/components/admin/):
 
-Cambia los métodos POST/PUT para que acepten File y UploadFile.
+AdminSidebar.svelte: Solo gestiona la navegación lateral y emite el cambio de pestaña.
 
-Usa el servicio de Cloudinary para subir la imagen y guarda la URL resultante en la base de datos de Neon.
+ImagePreview.svelte: Componente reutilizable para mostrar la imagen localmente antes de subirla.
 
-4. Frontend (Svelte en Astro):
+Editores Específicos: Crea HeroEditor.svelte, ProjectEditor.svelte, AboutEditor.svelte, etc. Cada uno maneja su propia lógica de fetch, su FormData y su estado de carga.
 
-Ruta Admin: Crea /src/pages/admin/index.astro (o similar) que use componentes de Svelte.
+Página Astro: src/pages/admin.astro debe quedar limpio, importando y cargando únicamente <AdminPanel client:load />.
 
-Formularios Dinámicos: Los formularios deben usar FormData para enviar archivos al backend.
+3. UX y Diseño Visual
 
-UX: Implementa previsualización de imagen (Preview) antes de subir y un estado de "Cargando..." mientras se procesa en la nube.
+Sidebar: Diseño oscuro, fijo a la izquierda, acentos en color ámbar.
 
-Credenciales .env:
+Feedback: Implementar estados de "Cargando..." y mensajes de éxito/error independientes en cada editor.
+
+Preview: Al seleccionar un archivo en cualquier editor, el componente ImagePreview debe mostrar la imagen inmediatamente.
+
+Instrucción de Análisis: Antes de escribir código, analiza app/api/v1/endpoints/ y src/components/ para mantener la coherencia con los nombres de campos y archivos existentes. No mezcles lógica de distintos dominios en un mismo componente.
+
 
 Fragmento de código
 ```
@@ -64,6 +70,5 @@ CLOUDINARY_API_KEY=185721842557166
 CLOUDINARY_API_SECRET=TU_API_SECRET_COMPLETO
 ```
 
-Objetivo: El sistema debe permitirme actualizar el Hero o un Proyecto desde el panel /admin, subiendo la imagen a Cloudinary y guardando el link en Neon, sin errores de CORS.
 
 Respuesta esperada: "CMS con soporte para Cloudinary configurado – Las imágenes ahora se gestionan en la nube."

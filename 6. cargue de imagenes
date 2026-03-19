@@ -1,0 +1,82 @@
+🎨 PROMPT PARA COMPONENTE DE CARGA DE IMÁGENES MODERNO
+Create a modern, visually stunning image upload component with the following characteristics:
+ 
+**Visual Design:**
+- Dark theme with zinc/amber/orange color palette
+- Gradient accents (amber-400 to orange-500)
+- Smooth animations and micro-interactions
+- Glass-morphism effects with backdrop blur
+- Professional admin panel aesthetic
+ 
+**Core Features:**
+- Drag & drop functionality with visual feedback
+- Image preview with overlay controls
+- File validation (size, type)
+- Multiple states: empty, dragging, uploading, success, error
+- Progress indicators and loading states
+ 
+**Interactive Elements:**
+- Hover effects with scale and opacity transitions
+- Floating action buttons for replace/remove
+- Animated border changes during drag operations
+- Success checkmark indicators
+- Error states with clear messaging
+ 
+**Layout Structure:**
+- Drop zone with dashed borders that animate
+- Icon-based visual hierarchy
+- Responsive grid system
+- Proper spacing and typography hierarchy
+- Mobile-optimized touch targets
+ 
+**Technical Requirements:**
+- FormData integration for API uploads
+- Event-driven architecture (on:change)
+- TypeScript interfaces for type safety
+- Component composition and reusability
+- Accessibility considerations (ARIA labels, keyboard navigation)
+ 
+**Animation Details:**
+- Scale transforms on hover (scale-[1.02])
+- Smooth opacity transitions (duration-300)
+- Border color animations
+- Gradient overlays with opacity changes
+- Loading spinners with custom styling
+ 
+**Color System:**
+- Primary: zinc-900/950 backgrounds
+- Accent: amber-400/orange-500 gradients
+- Text: zinc-100/300/400 hierarchy
+- Borders: zinc-700/800 with amber accents
+- Success: emerald-500
+- Error: red-500/900
+ 
+**Typography:**
+- Inter font family
+- Medium weight for labels
+- Clear visual hierarchy
+- Consistent spacing system
+ 
+Create this as a reusable Svelte component that can be integrated into admin forms with minimal configuration.
+🚀 VARIACIONES Y EXTENSIONES
+Para diferentes estilos:
+Variation 1: Minimalist version with subtle animations
+Variation 2: Bold version with larger gradients and more dramatic effects  
+Variation 3: Light theme version with inverted color palette
+Variation 4: Neon/cyberpunk version with glowing effects
+Para diferentes casos de uso:
+- Avatar upload with circular crop
+- Gallery upload with multiple files
+- Document upload with file type icons
+- Video upload with thumbnail preview
+Para diferentes frameworks:
+- React version with hooks and state management
+- Vue 3 composition API version
+- Angular version with reactive forms
+- Vanilla JS with web components
+💡 CONSEJOS DE DISEÑO
+Micro-interacciones: Pequeños detalles que hacen la gran diferencia
+Estado vacío: Diseña cuidadosamente el estado sin archivos
+Feedback inmediato: Respuesta visual instantánea a cada acción
+Accesibilidad: Asegura que todo sea navegable por teclado
+Performance: Optimiza las animaciones para 60fps

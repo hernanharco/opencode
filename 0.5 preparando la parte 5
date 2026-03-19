@@ -1,0 +1,39 @@
+Muy buena pregunta. Antes de ejecutar ese prompt maestro necesitas tener las bases sólidas. Déjame mostrarte dónde estás y qué falta:Aquí tienes el mapa visual de tu situación actual y lo que falta antes de ejecutar el prompt maestro:
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 0.25s;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+VvisualizeVvisualize show_widgetLo que debes hacer ANTES de ejecutar el prompt maestro son 3 cosas concretas:
+
+1. Actualizar .windsurf/backend.md — agrega esta sección al final:
+markdown## 🔗 Mapa de imports — fuente de verdad
+| Qué importar       | Desde dónde                      |
+|--------------------|----------------------------------|
+| `get_db`           | `app.db.session`                 |
+| `AsyncSession`     | `sqlalchemy.ext.asyncio`         |
+| `Base`             | `app.models.base`                |
+| `upload_image`     | `app.core.cloudinary`            |
+| `settings`         | `app.core.config`                |
+
+## 📡 Endpoints registrados actualmente
+| Dominio  | Prefix           | GET latest |
+|----------|------------------|------------|
+| hero     | /api/v1/heroes   | sí         |
+| about    | /api/v1/abouts   | sí         |
+| stack    | /api/v1/stacks   | no         |
+| project  | /api/v1/projects | no         |
+| passion  | /api/v1/passions | no         |
+(ajusta los dominios a los que realmente creaste)
+
+2. Actualizar .windsurf/frontend.md — agrega esta sección al final:
+markdown## 📡 API del backend — cómo consumirla
+- Base URL: `import.meta.env.PUBLIC_API_URL` (ej: http://localhost:8000)
+- Secciones únicas (hero, about): usar `GET /api/v1/{dominio}s/latest/`
+- Secciones múltiples (stack, projects): usar `GET /api/v1/{dominio}s/`
+- Todas las actualizaciones son `multipart/form-data`, nunca JSON puro
+- La imagen siempre llega como `File` separado, el resto como campos `Form`
+
+3. Crear frontend/.env con una sola línea:
+envPUBLIC_API_URL=http://localhost:8000

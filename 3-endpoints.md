@@ -316,3 +316,4 @@ api_router.include_router(
 - ✅ Si un campo es opcional en el frontend, marcarlo `nullable=True`
   en el modelo y `Optional` en el schema
 - ✅ Ante cualquier ambigüedad de dominio o import, preguntar antes de crear archivos
+- poetry add python-multipart

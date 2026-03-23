@@ -1,0 +1,121 @@
+MIGRACIÓN DE ICONOS: lucide-svelte → @iconify/svelte
+Stack: Astro v6 + Svelte 5 | Package Manager: pnpm
+
+════════════════════════════════════════════════
+FASE 0 — AUDITORÍA COMPLETA (NO TOQUES NADA AÚN)
+════════════════════════════════════════════════
+
+Antes de modificar cualquier archivo, ejecuta estos comandos
+y muéstrame el reporte completo:
+
+  grep -r "from 'lucide-svelte'" src/ --include="*.svelte" -l
+  grep -r "from 'lucide-svelte'" src/ --include="*.astro" -l
+  grep -r "lucide-svelte" src/ -h --include="*.svelte" --include="*.astro" | sort | uniq
+
+Con el resultado genera una tabla con este formato exacto:
+
+  | Archivo | Iconos importados | Tipo |
+  |---------|------------------|------|
+  | src/components/layout/Navbar.svelte | Menu, X | .svelte |
+  | src/pages/index.astro | ArrowRight | .astro |
+
+ESPERA MI CONFIRMACIÓN antes de continuar a la Fase 1.
+
+════════════════════════════════════════════════
+FASE 1 — INSTALACIÓN DE DEPENDENCIAS
+════════════════════════════════════════════════
+
+Ejecuta en orden:
+
+  pnpm remove lucide-svelte
+  pnpm add @iconify/svelte @iconify-json/lucide
+
+NO añadas astro-icon ni ninguna otra dependencia.
+NO modifiques astro.config.mjs.
+
+════════════════════════════════════════════════
+FASE 2 — REGLAS DE TRANSFORMACIÓN
+════════════════════════════════════════════════
+
+REGLA ABSOLUTA: Solo cambias imports y tags de iconos.
+Nada más. Ni divs, ni clases, ni lógica, ni extensiones de archivo.
+
+── EN ARCHIVOS .svelte ──────────────────────────
+
+ANTES:
+  import { Menu, ArrowRight, Globe } from 'lucide-svelte';
+  <Menu class="w-5 h-5" />
+  <ArrowRight size={20} />
+
+DESPUÉS:
+  import Icon from '@iconify/svelte';
+  <Icon icon="lucide:menu" class="w-5 h-5" />
+  <Icon icon="lucide:arrow-right" width={20} height={20} />
+
+Reglas de conversión de nombres:
+  - PascalCase → kebab-case
+  - ArrowRight → arrow-right
+  - MapPin → map-pin
+  - Github → github
+  - Gamepad2 → gamepad-2
+
+── TABLA DE ICONOS RENOMBRADOS EN LUCIDE v0.468+ ──
+
+Estos iconos cambiaron de nombre. Aplica el reemplazo correcto:
+
+  | Nombre original | Nombre correcto en Iconify |
+  |----------------|---------------------------|
+  | Globe          | lucide:earth              |
+  | GlobeIcon      | lucide:earth              |
+  | Slash          | lucide:slash              |
+  | Bike           | lucide:bike               |
+
+Si encuentras un icono que no existe en @iconify-json/lucide,
+NO inventes un nombre. Escríbeme: "ICONO NO ENCONTRADO: [nombre]"
+y espera instrucción.
+
+── CONVERSIÓN DE PROPS ──────────────────────────
+
+  size={N}              → width={N} height={N}
+  size="N"              → width={N} height={N}
+  class="..."           → class="..."  (sin cambios)
+  strokeWidth={N}       → NO tiene equivalente directo,
+                          elimina el prop y avísame
+
+════════════════════════════════════════════════
+FASE 3 — VERIFICACIÓN FINAL
+════════════════════════════════════════════════
+
+Ejecuta estos comandos. TODOS deben retornar cero resultados:
+
+  grep -r "lucide-svelte" src/ --include="*.svelte"
+  grep -r "lucide-svelte" src/ --include="*.astro"
+  grep -r "from 'lucide-svelte'" src/
+
+Luego ejecuta el servidor:
+
+  rm -rf .astro dist
+  pnpm dev
+
+Confirma que arranca sin errores de hidratación en consola.
+
+════════════════════════════════════════════════
+PROHIBICIONES ABSOLUTAS (NO NEGOCIABLES)
+════════════════════════════════════════════════
+
+🚫 NO cambies extensiones de archivo (.svelte sigue siendo .svelte)
+🚫 NO conviertas componentes Svelte a Astro
+🚫 NO modifiques clases Tailwind
+🚫 NO toques $state, $effect, onMount ni ninguna lógica
+🚫 NO cambies estructura HTML (divs, sections, layouts)
+🚫 NO añadas astro-icon ni otras librerías de iconos
+🚫 NO hagas más de una cosa a la vez — una fase, luego pausa
+
+════════════════════════════════════════════════
+FLUJO DE TRABAJO OBLIGATORIO
+════════════════════════════════════════════════
+
+  Fase 0 → genera reporte → PAUSA (espera confirmación)
+  Fase 1 → instala deps   → PAUSA (espera confirmación)
+  Fase 2 → transforma     → PAUSA (espera confirmación)
+  Fase 3 → verifica       → reporta resultado final
